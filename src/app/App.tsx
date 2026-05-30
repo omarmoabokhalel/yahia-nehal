@@ -28,6 +28,19 @@ const handleEnvelopeOpen = () => {
     }).catch(() => {});
   }
 };
+const playMusic = () => {
+  if (audioRef.current) {
+    audioRef.current.volume = 0;
+    audioRef.current.play().then(() => {
+      let vol = 0;
+      const fade = setInterval(() => {
+        vol = Math.min(vol + 0.05, 0.6);
+        audioRef.current!.volume = vol;
+        if (vol >= 0.6) clearInterval(fade);
+      }, 150);
+    }).catch(console.error);
+  }
+};
   return (
     <div className="bg-[#FFF8E7] min-h-screen">
         <audio
@@ -43,7 +56,10 @@ const handleEnvelopeOpen = () => {
             exit={{ opacity: 0, transition: { duration: 1 } }}
             className="fixed inset-0 z-50"
           >
-            <WelcomeEnvelope onOpen={() => setShowEnvelope(false)} />
+           <WelcomeEnvelope 
+  onOpen={() => setShowEnvelope(false)}
+  onButtonClick={playMusic}  // 👈 جديد
+/>
           </motion.div>
         )}
       </AnimatePresence>

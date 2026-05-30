@@ -3,15 +3,16 @@ import { motion } from 'motion/react';
 
 interface WelcomeEnvelopeProps {
   onOpen: () => void;
+  onButtonClick: () => void;
 }
 
-export function WelcomeEnvelope({ onOpen }: WelcomeEnvelopeProps) {
+export function WelcomeEnvelope({ onOpen, onButtonClick }: WelcomeEnvelopeProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => {
+    onButtonClick(); // 👈 شغّل الموسيقى فوراً مع الـ click
     setIsOpen(true);
-    // Wait for animation to finish before calling onOpen to remove component
-    setTimeout(onOpen, 2000); 
+    setTimeout(onOpen, 2000);
   };
 
   return (
