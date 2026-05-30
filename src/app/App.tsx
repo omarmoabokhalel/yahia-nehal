@@ -19,7 +19,7 @@ export default function App() {
   if (audioRef.current) {
     audioRef.current.volume = 0;
     audioRef.current.play().then(() => {
-      // Fade in خلال 3 ثواني
+      
       let vol = 0;
       const fade = setInterval(() => {
         vol = Math.min(vol + 0.05, 0.6);
@@ -32,7 +32,6 @@ export default function App() {
 
   return (
     <div className="bg-[#FFF8E7] min-h-screen">
-      {/* الأغنية — غيّر الـ src لأغنيتك */}
       <audio
         ref={audioRef}
         src="/music/wedding-song.mp3"
