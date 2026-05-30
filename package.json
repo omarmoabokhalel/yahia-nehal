@@ -1,13 +1,13 @@
 {
   "name": "@figma/my-make-file",
-  "homepage": "https://omarmoabokhalel.github.io/yahia-nehal",
+
   "private": true,
   "version": "0.0.1",
   "type": "module",
   "scripts": {
     "build": "vite build",
     "dev": "vite",
-    "predeploy": "npm run build",
+ "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
