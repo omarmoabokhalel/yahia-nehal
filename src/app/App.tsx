@@ -1,0 +1,42 @@
+import { useState } from 'react';
+import { Navbar } from "@/app/components/Navbar";
+import { Hero } from "@/app/components/Hero";
+import { Couple } from "@/app/components/Couple";
+import { Events } from "@/app/components/Events";
+import { Gallery } from "@/app/components/Gallery";
+import { RSVP } from "@/app/components/RSVP";
+import { Footer } from "@/app/components/Footer";
+import { WelcomeEnvelope } from "@/app/components/WelcomeEnvelope";
+import { Toaster } from "sonner";
+import { AnimatePresence, motion } from "motion/react";
+
+export default function App() {
+  const [showEnvelope, setShowEnvelope] = useState(true);
+
+  return (
+    <div className="bg-[#FFF8E7] min-h-screen">
+      <AnimatePresence>
+        {showEnvelope && (
+          <motion.div
+            key="envelope"
+            exit={{ opacity: 0, transition: { duration: 1 } }}
+            className="fixed inset-0 z-50"
+          >
+            <WelcomeEnvelope onOpen={() => setShowEnvelope(false)} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <div className={`${showEnvelope ? 'h-screen overflow-hidden' : ''}`}>
+        <Navbar />
+        <Hero />
+        <Couple />
+        <Events />
+        <Gallery />
+        <Footer />
+      </div>
+      
+      <Toaster position="bottom-center" />
+    </div>
+  );
+}
