@@ -10,16 +10,16 @@ import { WelcomeEnvelope } from "@/app/components/WelcomeEnvelope";
 import { Toaster } from "sonner";
 import { AnimatePresence, motion } from "motion/react";
 
+
 export default function App() {
   const [showEnvelope, setShowEnvelope] = useState(true);
-  const audioRef = useRef<HTMLAudioElement>(null);
-
-  const handleEnvelopeOpen = () => {
+const audioRef = useRef<HTMLAudioElement>(null);
+const handleEnvelopeOpen = () => {
   setShowEnvelope(false);
   if (audioRef.current) {
     audioRef.current.volume = 0;
     audioRef.current.play().then(() => {
-      
+      // Fade in خلال 3 ثواني
       let vol = 0;
       const fade = setInterval(() => {
         vol = Math.min(vol + 0.05, 0.6);
@@ -29,16 +29,8 @@ export default function App() {
     }).catch(() => {});
   }
 };
-
   return (
     <div className="bg-[#FFF8E7] min-h-screen">
-      <audio
-        ref={audioRef}
-        src="/music/wedding-song.mp3"
-        loop
-        preload="auto"
-      />
-
       <AnimatePresence>
         {showEnvelope && (
           <motion.div
@@ -46,7 +38,7 @@ export default function App() {
             exit={{ opacity: 0, transition: { duration: 1 } }}
             className="fixed inset-0 z-50"
           >
-            <WelcomeEnvelope onOpen={handleEnvelopeOpen} />
+            <WelcomeEnvelope onOpen={() => setShowEnvelope(false)} />
           </motion.div>
         )}
       </AnimatePresence>
@@ -59,7 +51,7 @@ export default function App() {
         <Gallery />
         <Footer />
       </div>
-
+      
       <Toaster position="bottom-center" />
     </div>
   );
