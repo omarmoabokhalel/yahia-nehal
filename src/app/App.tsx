@@ -30,7 +30,14 @@ const handleEnvelopeOpen = () => {
   }
 };
   return (
+    
     <div className="bg-[#FFF8E7] min-h-screen">
+       <audio
+        ref={audioRef}
+        src="/music/wedding-song.mp3"
+        loop
+        preload="auto"
+      />
       <AnimatePresence>
         {showEnvelope && (
           <motion.div
