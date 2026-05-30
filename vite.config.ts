@@ -24,6 +24,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+   base: '/yahia-nehal/',
   resolve: {
     alias: {
       // Alias @ to the src directory
